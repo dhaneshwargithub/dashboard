@@ -1,0 +1,29 @@
+<div class="login-overlay">
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <form class="login-form" (ngSubmit)="login()">
+    <h3>Login Here</h3>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter Email" [(ngModel)]="email" name="email" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter Password" [(ngModel)]="password" name="password" required />
+
+    <label for="designation">Designation</label>
+    <select id="designation" [(ngModel)]="designation" name="designation" required>
+      <option value="" disabled selected>Select Designation</option>
+      <option *ngFor="let desig of designations" [value]="desig">{{ desig }}</option>
+    </select>
+
+    <button type="submit">Log In</button>
+
+    <!-- Error message handling -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

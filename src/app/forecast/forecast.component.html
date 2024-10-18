@@ -1,0 +1,40 @@
+<div class="forecast-container">
+    <h2>Forecast Sales</h2>
+  
+    <form (ngSubmit)="loadForecastData()" #forecastForm="ngForm">
+      <label for="country">Country:</label>
+      <select id="country" [(ngModel)]="country" name="country" required (change)="isFormValid()">
+        <option *ngFor="let option of countries" [value]="option">{{ option }}</option>
+      </select>
+  
+      <label for="category">Category:</label>
+      <select id="category" [(ngModel)]="category" name="category" required (change)="updateSubCategories(category); isFormValid()">
+        <option *ngFor="let option of categories" [value]="option">{{ option }}</option>
+      </select>
+  
+      <label for="subCategory">Sub-Category:</label>
+      <select id="subCategory" [(ngModel)]="subCategory" name="subCategory" required (change)="isFormValid()">
+        <option *ngFor="let option of subCategories" [value]="option">{{ option }}</option>
+      </select>
+  
+      <label for="startDate">Start Date:</label>
+      <input type="text" id="startDate" [(ngModel)]="startDate" name="startDate" placeholder="YYYY-MM" (change)="validateStartDate(); isFormValid()" required>
+      <div *ngIf="dateError" class="alert">
+        {{ dateError }}
+      </div>
+  
+      <label for="forecastMonths">Forecast Months:</label>
+      <input type="number" id="forecastMonths" [(ngModel)]="forecastMonths" name="forecastMonths" min="1" max="24" (change)="validateForecastMonths(); isFormValid()" required>
+      <div *ngIf="forecastMonthsError" class="alert">
+        {{ forecastMonthsError }}
+      </div>
+  
+      <button type="submit" [disabled]="!isFormValid()">Get Forecast</button>
+    </form>
+  
+    <div *ngIf="forecastData">
+      <h3>Forecast Results</h3>
+      <canvas id="forecastChart"></canvas>
+    </div>
+  </div>
+  

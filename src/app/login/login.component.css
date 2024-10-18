@@ -1,0 +1,157 @@
+/* Global reset */
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and background color */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4ff;
+  margin: 0;
+}
+
+/* Overlay container for the login form */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the overlay is on top */
+}
+
+/* Background for shapes (for visual design) */
+.background {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  pointer-events: none; /* Ensure the shapes don't interfere with interactions */
+}
+
+.background .shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+  left: -80px;
+  top: -80px;
+}
+
+.shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  right: -30px;
+  bottom: -80px;
+}
+
+/* Login form styles */
+.login-form {
+  width: 400px;
+  height: 500px; /* Increased height to accommodate role dropdown */
+  background-color: rgba(255, 255, 255, 0.9); /* Less transparent for better visibility */
+  border-radius: 10px;
+  backdrop-filter: blur(15px); /* Enhanced blur effect for better visibility */
+  padding: 50px 35px;
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative; /* Relative positioning for the form */
+  z-index: 1; /* Ensure the form is above the shapes */
+}
+
+/* Form text and input styles */
+.login-form * {
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+/* Header styling for the form */
+.login-form h3 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #5a67d8; /* Purple header text */
+}
+
+/* Label styling */
+.login-form label {
+  margin-top: 20px; /* Adjusted margin for better spacing */
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a5568; /* Dark purple for labels */
+}
+
+/* Input field styling */
+.login-form input {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #4a5568; /* Dark text for inputs */
+}
+
+/* Dropdown (select) styling */
+.login-form select {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #4a5568; /* Dark text for dropdown */
+  border: 1px solid #cbd5e0; /* Light gray border for dropdown */
+}
+
+/* Placeholder styling */
+.login-form input::placeholder {
+  color: #a0aec0; /* Light gray placeholder */
+}
+
+/* Button styling */
+.login-form button {
+  margin-top: 30px; /* Adjusted margin for better spacing */
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background-color: #5a67d8; /* Purple background for button */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #4c51bf; /* Darker purple on hover */
+}
+
+/* Error message styling */
+.error-message {
+  margin-top: 15px; /* Space above the error message */
+  padding: 10px;
+  background-color: #f56565; /* Red background */
+  color: white; /* White text */
+  border-radius: 5px;
+  text-align: center; /* Centered text */
+  font-weight: bold; /* Bold text */
+}

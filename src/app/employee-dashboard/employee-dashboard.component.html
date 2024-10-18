@@ -1,0 +1,114 @@
+<div class="dashboard" [class.dark-theme]="isDarkMode">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <!-- Place profile avatar in header actions -->
+    <div class="header-actions">
+      <img src="assets/profilepicture.jpg" 
+           alt="Profile Picture" 
+           (click)="toggleProfile()"
+           class="profile-avatar"
+      />
+    </div>
+    
+    <div class="profile-section">
+      <button class="toggle-mode" (click)="toggleDarkMode()">
+        <i class="fas fa-moon"></i>  {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
+      </button>
+      <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+    </div>
+  </div>
+
+  <div *ngIf="showProfile" class="profile-details">
+    <h3>User Profile</h3>
+    <p><strong>Name:</strong> {{ currentUser?.name }}</p>
+    <p><strong>Email:</strong> {{ currentUser?.email }}</p>
+    <p><strong>Role:</strong> {{ currentUser?.role }}</p>
+  </div>
+
+  <div class="kpi-summary">
+    <div class="kpi-card">
+      <h2 class="kpi-item total-sales">
+        <i class="fa fa-cash-register" aria-hidden="true"></i> Total Sales
+      </h2>
+      <p class="currency">{{ totalSales | currency }}</p>
+    </div>
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item total-profit">
+          <i class="fa fa-dollar-sign" aria-hidden="true"></i> Total Profit
+        </li>
+      </h2>
+      <p class="currency">{{ totalProfit | currency }}</p>
+    </div>
+  
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item profit-margin">
+          <i class="fa fa-chart-pie" aria-hidden="true"></i> Profit Margin
+        </li>
+      </h2>
+      <p class="number">{{ profitMargin | number:'1.2-2' }}%</p>
+    </div>
+  
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item customer-acquisition-cost">
+          <i class="fa fa-user-plus" aria-hidden="true"></i> Customer Acquisition Cost
+        </li>
+      </h2>
+      <p class="currency">{{ customerAcquisitionCost | currency }}</p>
+    </div>
+  
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item customer-lifetime-value">
+          <i class="fa fa-clock" aria-hidden="true"></i> Customer Lifetime Value
+        </li>
+      </h2>
+      <p class="currency">{{ customerLifetimeValue | currency }}</p>
+    </div>
+  
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item average-fulfillment-time">
+          <i class="fa fa-hourglass-half" aria-hidden="true"></i> Average Fulfillment Time
+        </li>
+      </h2>
+      <p class="number">{{ averageFulfillmentTime | number:'1.0-2' }} days</p>
+    </div>
+  
+    <div class="kpi-card">
+      <h2>
+        <li class="kpi-item roi">
+          <i class="fa fa-chart-line" aria-hidden="true"></i> ROI
+        </li>
+      </h2>
+      <p class="number">{{ returnOnInvestment | number:'1.2-2' }}%</p>
+    </div>
+  </div>
+  
+
+  <!-- Charts Section (unchanged) -->
+  <div class="charts-section">
+    <div class="chart-container">
+      <h3>Sales Trend</h3>
+      <canvas id="salesTrendChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Sales by Region</h3>
+      <canvas id="salesByRegionChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Top Categories</h3>
+      <canvas id="topCategoriesChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Profit Distribution</h3>
+      <canvas id="profitDistributionChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Monthly Revenue Breakdown</h3>
+      <canvas id="monthlyRevenueBreakdownChart"></canvas>
+    </div>
+  </div>
+</div>

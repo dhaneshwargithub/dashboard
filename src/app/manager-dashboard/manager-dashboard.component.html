@@ -1,0 +1,136 @@
+<div class="dashboard" [class.dark-theme]="isDarkMode">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <!-- Profile Avatar moved to the left -->
+    <div class="profile-section">
+      <img src="assets/profilepicture.jpg" 
+           alt="Profile Picture" 
+           (click)="toggleProfile()" 
+           class="profile-avatar"
+      />
+      <div *ngIf="showProfile" class="profile-details">
+        <h3>User Profile</h3>
+        <p><strong>Name:</strong> {{ currentUser?.name }}</p>
+        <p><strong>Email:</strong> {{ currentUser?.email }}</p>
+        <p><strong>Role:</strong> {{ currentUser?.role }}</p>
+      </div>
+    </div>
+
+    <!-- Buttons aligned on the right -->
+    <div class="header-actions">
+      <button class="Forecast" (click)="forecast()"><i class="fas fa-chart-line"></i> Forecast</button>
+      <button class="toggle-mode" (click)="toggleDarkMode()">
+        <i class="fas fa-moon"></i>  {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
+      </button>
+      <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </div>
+
+ <!-- KPI Summary Section -->
+ <div class="kpi-summary">
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item total-sales">
+        <i class="fa fa-cash-register" aria-hidden="true"></i> Total Sales
+      </li>
+    </h2>
+    <p class="currency">{{ totalSales | currency }}</p>
+  </div>
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item average-sales">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Average Sales per Transaction
+      </li>
+    </h2>
+    <p class="currency">{{ averageSalesPerTransaction | currency }}</p>
+  </div>
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item customer-retention">
+        <i class="fa fa-users" aria-hidden="true"></i> Customer Retention Rate
+      </li>
+    </h2>
+    <p class="number">{{ customerRetentionRate | number:'1.2-2' }}%</p>
+  </div>
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item average-order-value">
+        <i class="fa fa-tags" aria-hidden="true"></i> Average Order Value
+      </li>
+    </h2>
+    <p class="currency">{{ averageOrderValue | currency }}</p>
+  </div>
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item discount-impact">
+        <i class="fa fa-percent" aria-hidden="true"></i> Discount Impact
+      </li>
+    </h2>
+    <p class="number">{{ discountImpact | number:'1.2-2' }}%</p>
+  </div>
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item gross-profit-margin">
+        <i class="fas fa-chart-line" aria-hidden="true"></i> Gross Profit Margin
+      </li>
+    </h2>
+    <div *ngFor="let category of (grossProfitMargin | keyvalue)">
+      <p>{{ category.key }}: {{ category.value | number:'1.2-2' }}%</p>
+    </div>
+  </div>
+  
+  
+  <div class="kpi-card">
+    <h2>
+      <li class="kpi-item top-countries">
+        <i class="fa fa-globe" aria-hidden="true"></i> Top Performing Countries
+      </li>
+    </h2>
+    <ul>
+      <li *ngFor="let country of topPerformingCountries">
+        {{ country.Country }} - {{ country.Sales | currency:'USD':true:'1.0-0' }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+  <!-- Charts Section -->
+  <div class="charts-section">
+    <div class="chart-container">
+      <h3>Product Category Profitability</h3>
+      <canvas id="productCategoryProfitabilityChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Customer Segmentation</h3>
+      <canvas id="customerSegmentationChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Top Customers</h3>
+      <canvas id="topCustomersChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Sales by Ship Mode</h3>
+      <canvas id="salesByShipModeChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Sales, Profit, and Discount by Product Category</h3>
+      <canvas id="radarChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Discounted Orders Trend</h3>
+      <canvas id="discountedOrdersTrendChart"></canvas>
+    </div>  
+  </div>
+
+  <!-- Map Section -->
+  <div class="map-container">
+    <h3>Sales Distribution Across Europe</h3>
+    <div id="europe-map" style="width: 100%; height: 400px;"></div>
+  </div>
+</div>
